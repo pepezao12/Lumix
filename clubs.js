@@ -137,6 +137,8 @@ function setupTabs() {
             document.getElementById(`tab-${btn.dataset.tab}`).style.display = "block";
         };
     });
+
+    buttons[0].click(); // ← adiciona esta linha
 }
 
 // ─── Init ──────────────────────────────────────────────────────────────────
