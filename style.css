@@ -834,6 +834,7 @@ body.login {
 #club-header {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1.5rem;
     max-width: 800px;
     margin: 2rem auto 1rem;
