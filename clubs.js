@@ -36,7 +36,12 @@ async function loadClub(userId, isAdmin) {
 
     if (error) { console.error("Erro ao carregar clube:", error); return; }
 
-    document.getElementById("header-badge").textContent       = club.badge;
+    const headerBadge = document.getElementById('header-badge')
+    if (club.badge && club.badge.startsWith('http')) {
+        headerBadge.innerHTML = '<img src="' + club.badge + '" alt="club badge">'
+    } else {
+        headerBadge.textContent = club.badge
+    }
     document.getElementById("header-name").textContent        = club.name;
     document.getElementById("header-description").textContent = club.description;
 

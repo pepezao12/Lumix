@@ -852,6 +852,16 @@ body.login {
     vertical-align: middle;
 }
 
+#header-badge img {
+    margin-top: 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(107, 56, 248, 0.5);
+    box-shadow: 0 0 20px rgba(107, 56, 248, 0.3);
+}
+
 #header-name {
     font-size: 2rem;
     font-weight: 700;
