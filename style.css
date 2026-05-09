@@ -1,0 +1,970 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Corrigido: body e body.home eram idênticos — removida a regra duplicada */
+body {
+    background: #130f2a;
+    color: rgb(255, 255, 255);
+}
+
+/* ── Nav ── */
+nav {
+    width: 100%;
+    padding: 1rem 5%;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #6b38f8;
+    letter-spacing: 1px;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: default; /* corrigido: "normal" não é um valor CSS válido */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links li a {
+    position: relative;
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #e2e8f0;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #6b38f8;
+    text-shadow: 0 0 10px #6b38f8;
+}
+
+.btns {
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    background: #6b38f8;
+    color: #fff;
+    box-shadow: 0 0 8px #6b38f8;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btns:hover {
+    background: #5c0af3;
+    box-shadow: 0 0 20px #5c0af3;
+}
+
+#userBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#userBtn i {
+    color: #8c00ff;
+    font-size: 1.5rem;
+    transition: 0.3s;
+}
+
+#userBtn:hover i {
+    color: #6b38f8;
+    text-shadow: 0 0 10px #6b38f8;
+}
+
+#userMenu {
+    position: absolute;
+    right: 5%;
+    top: 80px;
+    background: rgb(45, 0, 128);
+    border: 1px solid #5c0af3;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: auto;
+    min-width: 140px;
+    white-space: nowrap;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#userMenu.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Corrigido: regra duplicada removida (estava declarada duas vezes consecutivas) */
+#userMenu[hidden] {
+    display: none !important;
+}
+
+#userMenu p {
+    margin: 0 0 10px 0;
+    color: #6b38f8;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+#userMenu button {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #6b38f8;
+    letter-spacing: 1px;
+    background: rgb(45, 0, 128);
+    border: 1px solid #5c0af3;
+    width: 100%;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+    display: block;
+}
+
+#userMenu button:hover {
+    background: #5c0af3;
+    color: #fff;
+}
+
+#club-info {
+    margin: 8px 0;
+    border-top: 1px solid rgba(107, 56, 248, 0.3);
+    border-bottom: 1px solid rgba(107, 56, 248, 0.3);
+    padding: 8px 0;
+}
+
+.club-link {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #a78bfa;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.club-link:hover {
+    opacity: 0.8;
+    color: #6b38f8;
+}
+
+#club-badge {
+    font-size: 1.3rem;
+}
+
+#club-name {
+    font-size: 0.9rem;
+}
+
+/* ── Dashboard ── */
+#dashboard {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+#welcome-msg {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #a78bfa;
+    text-align: center;
+}
+
+.stats-grid {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: rgba(107, 56, 248, 0.1);
+    border: 1px solid rgba(107, 56, 248, 0.3);
+    border-radius: 12px;
+    padding: 1.2rem 2rem;
+    text-align: center;
+    flex: 1;
+    min-width: 140px;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    background: rgba(107, 56, 248, 0.2);
+    box-shadow: 0 0 16px rgba(107, 56, 248, 0.3);
+}
+
+.stat-card p {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #6b38f8;
+}
+
+#today-card {
+    background: rgba(107, 56, 248, 0.08);
+    border: 1px solid rgba(107, 56, 248, 0.25);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+#today-card h3 {
+    font-size: 1.2rem;
+    color: #a78bfa;
+}
+
+#play-btn {
+    padding: 0.6rem 2rem;
+    border-radius: 30px;
+    background: #6b38f8;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px #6b38f8;
+    transition: 0.3s;
+}
+
+#play-btn:hover {
+    background: #5c0af3;
+    box-shadow: 0 0 20px #5c0af3;
+}
+
+#today-countdown {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #6b38f8;
+}
+
+/* Top 3 */
+#top3-section {
+    text-align: center;
+}
+
+#top3-section h3 {
+    font-size: 1.3rem;
+    color: #a78bfa;
+    margin-bottom: 1rem;
+}
+
+#top3-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.top3-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(107, 56, 248, 0.1);
+    border: 1px solid rgba(107, 56, 248, 0.2);
+    border-radius: 10px;
+    padding: 0.8rem 1.5rem;
+    transition: 0.3s;
+}
+
+.top3-card:hover {
+    background: rgba(107, 56, 248, 0.2);
+}
+
+.top3-medal { font-size: 1.5rem; }
+
+.top3-name {
+    font-weight: 600;
+    font-size: 1rem;
+    flex: 1;
+    margin-left: 1rem;
+    text-align: left;
+}
+
+.top3-score {
+    font-weight: 700;
+    color: #6b38f8;
+}
+
+/* Como Jogar */
+#how-to-play {
+    text-align: center;
+}
+
+#how-to-play h3 {
+    font-size: 1.3rem;
+    color: #a78bfa;
+    margin-bottom: 1rem;
+}
+
+.how-grid {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.how-card {
+    background: rgba(107, 56, 248, 0.08);
+    border: 1px solid rgba(107, 56, 248, 0.2);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    flex: 1;
+    min-width: 200px;
+    max-width: 320px;
+    text-align: left;
+}
+
+.how-card h4 {
+    font-size: 1.1rem;
+    color: #a78bfa;
+    margin-bottom: 0.5rem;
+}
+
+.how-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+/* ── Login / Register ── */
+body.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 420px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #6b38f8;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.container h1 {
+    font-size: 36px;
+    text-align: center;
+    text-shadow: 0 0 5px #6b38f8;
+    margin-bottom: 10px;
+}
+
+.input_box {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 25px 0;
+}
+
+.input_box input {
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    outline: none;
+    font-size: 16px;
+    color: #c5c5c5;
+    padding: 0 20px;
+    transition: border-color 0.3s;
+}
+
+.input_box input:focus {
+    border-color: #6b38f8;
+    box-shadow: 0 0 8px rgba(107, 56, 248, 0.4);
+}
+
+.input_box input::placeholder {
+    color: #c5c5c5;
+}
+
+.registerbtn,
+.loginbtn {
+    width: 100%;
+    height: 50px;
+    background-color: #6b38f8;
+    border: 2px solid transparent;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: 0 0 10px #6b38f8;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.registerbtn:hover,
+.loginbtn:hover {
+    background-color: transparent;
+    border-color: #3200bb;
+    color: #a57fff;
+}
+
+.register-link {
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 5px;
+    color: #c5c5c5;
+}
+
+.register-link a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+    color: #a57fff;
+    transition: 0.3s;
+}
+
+/* ── Game ── */
+.green  { background-color: #538d4e; }
+.yellow { background-color: #b59f3b; }
+.gray   { background-color: #3a3a3c; }
+
+#intro-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 80vh;
+    max-width: 500px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+#intro-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #6b38f8;
+}
+
+#intro-section p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+#start-btn {
+    padding: 0.7rem 2.5rem;
+    border-radius: 30px;
+    background: #6b38f8;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 0 14px #6b38f8;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+#start-btn:hover {
+    background: #5c0af3;
+    box-shadow: 0 0 24px #5c0af3;
+}
+
+#quiz-section,
+#wordle-section,
+#loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    max-width: 500px;
+    margin: 40px auto;
+    gap: 20px;
+    text-align: center;
+}
+
+#quiz-question {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #6b38f8;
+    letter-spacing: 1px;
+    margin-top: 50px;
+}
+
+#btn-a,
+#btn-b,
+#btn-c,
+#btn-d {
+    padding: 10px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    background: #6b38f8;
+    color: #fff;
+    box-shadow: 0 0 8px #6b38f8;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    flex: 1;
+    max-width: 160px;
+    white-space: nowrap;
+    margin-top: 20px;
+}
+
+#btn-a:hover,
+#btn-b:hover,
+#btn-c:hover,
+#btn-d:hover {
+    background: #5c0af3;
+    box-shadow: 0 0 20px #5c0af3;
+}
+
+.quiz-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100%;
+}
+
+.quiz-options button {
+    flex: 1;
+    max-width: 220px;
+    padding: 10px;
+    text-align: center;
+}
+
+#wordle-section p {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.wordle-row,
+#wordle-input-display {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 8px;
+    cursor: pointer;
+    margin: 6px 0;
+}
+
+#wordle-feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Corrigido: .wordle-letter estava definida duas vezes com propriedades sobrepostas — fundida numa só */
+.wordle-letter,
+.input-box {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: bold;
+    border-radius: 6px;
+    color: white;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.input-box {
+    border: 2px solid #575658;
+    transition: border-color 0.1s;
+}
+
+.input-box.active {
+    border-color: #999;
+}
+
+#wordle-submit {
+    width: 50%;
+    height: 50px;
+    background-color: #6b38f8;
+    border: 2px solid transparent;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: 0 0 10px #6b38f8;
+    transition: 0.3s;
+}
+
+#wordle-submit:hover {
+    background-color: transparent;
+    border-color: #3200bb;
+    color: #a57fff;
+}
+
+#already-played {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 80vh;
+    gap: 12px;
+}
+
+#next-challenge-time {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #6b38f8;
+}
+
+#results-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 80vh;
+    gap: 15px;
+    transform: translateY(-60px);
+}
+
+#wordle-attempts {
+    margin-top: 25px;
+}
+
+/* Corrigido: rotateX não leva aspas — a animação não funcionava em nenhum browser */
+@keyframes flipIn {
+    0%   { transform: rotateX(0deg); }
+    49%  { transform: rotateX(-90deg); }
+    50%  { transform: rotateX(-90deg); }
+    100% { transform: rotateX(0deg); }
+}
+
+.wordle-letter {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.wordle-letter.flip {
+    animation: flipIn 0.4s ease forwards;
+}
+
+#final-score {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.score-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(107, 56, 248, 0.1);
+    border: 1px solid rgba(107, 56, 248, 0.2);
+    border-radius: 10px;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.score-item span:nth-child(2) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #6b38f8;
+    min-width: 40px;
+    text-align: center;
+}
+
+.total-item {
+    border-color: #6b38f8;
+    background: rgba(107, 56, 248, 0.2);
+}
+
+.total-item span:nth-child(2) {
+    font-size: 1.8rem;
+    color: #a78bfa;
+}
+
+/* ── Leaderboard ── */
+.leaderboard-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.05rem;
+}
+
+#leaderboard-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    width: 100%;
+}
+
+/* Corrigido: #leaderboard-table e #club-leaderboard-table tinham CSS idêntico
+   — extraído para classe partilhada .data-table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.data-table th {
+    color: #6b38f8;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.data-table tr:hover {
+    background-color: #7700ff27;
+}
+
+#filters {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+#filters button {
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
+    border: 2px solid #6b38f8;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+#filters button:hover,
+#filters button.active {
+    background: #6b38f8;
+    box-shadow: 0 0 12px #6b38f8;
+}
+
+#leaderboard-loading,
+#leaderboard-empty {
+    text-align: center;
+    margin: 3rem 0;
+    color: #aaa;
+}
+
+#sort-score,
+#sort-games {
+    user-select: none;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#sort-score:hover,
+#sort-games:hover {
+    color: #a78bfa;
+}
+
+#arrow-score,
+#arrow-games {
+    font-size: 0.8rem;
+    margin-left: 4px;
+}
+
+/* ── Club ── */
+#club-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 2rem auto 1rem;
+    padding: 0 1rem;
+}
+
+#header-badge {
+    font-size: 4rem;
+}
+
+#club-badge img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+#header-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #a78bfa;
+}
+
+#header-description {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+#club-tabs {
+    display: none;
+    justify-content: center;
+    gap: 12px;
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+.tab-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    border: 2px solid #6b38f8;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+    background: #6b38f8;
+    box-shadow: 0 0 12px #6b38f8;
+}
+
+.tab-content {
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+#members-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.member-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(107, 56, 248, 0.08);
+    border: 1px solid rgba(107, 56, 248, 0.2);
+    border-radius: 10px;
+    padding: 0.8rem 1.2rem;
+    transition: 0.3s;
+}
+
+.member-card:hover {
+    background: rgba(107, 56, 248, 0.15);
+}
+
+.member-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.member-name {
+    font-weight: 600;
+}
+
+.captain-badge {
+    font-size: 0.75rem;
+    background: rgba(107, 56, 248, 0.3);
+    border: 1px solid #6b38f8;
+    border-radius: 20px;
+    padding: 2px 8px;
+    color: #a78bfa;
+}
+
+.member-date {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+#pvp-placeholder {
+    text-align: center;
+    padding: 3rem;
+    color: #aaa;
+}
+
+#pvp-placeholder h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #6b38f8;
+}
+
+#no-club {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 60vh;
+    gap: 12px;
+    color: #aaa;
+}
+
+#club-loading {
+    text-align: center;
+    margin: 3rem 0;
+    color: #aaa;
+}

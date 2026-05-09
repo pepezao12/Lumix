@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ✅ Removido o script CDN global — agora usamos só o import ESM em index.js -->
+    <script type="module" src="index.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Lumix</title>
+</head>
+<body class="login">
+    <main class="container">
+
+        <!--Register-->
+        <form id="registerForm">
+            <h1>Signup Lumix</h1>
+            <div class="input_box">
+                <input id="username" placeholder="User" type="text">
+                <input id="email" placeholder="Email" type="email">
+                <input id="password" placeholder="Password" type="password">
+            </div>
+            <button class="registerbtn" type="submit">Signup</button>
+            <div class="register-link">
+                <p>Tens conta? <a href="#" id="goLogin">Login</a></p>
+            </div>
+        </form>
+
+        <!--Login-->
+        <form id="loginForm" hidden>
+            <h1>Login Lumix</h1>
+            <div class="input_box">
+                <input id="loginEmail" placeholder="Email" type="email">
+                <input id="loginPassword" placeholder="Password" type="password">
+            </div>
+            <button class="loginbtn" type="submit">Login</button>
+            <div class="register-link">
+                <p>Não tens conta? <a href="#" id="goRegister">Register</a></p>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

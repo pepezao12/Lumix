@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1496d6dab9.js" crossorigin="anonymous"></script>         
+    <!-- ✅ Removido script CDN global — usamos import ESM em home.js -->
+    <script type="module" src="clubs.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Lumix</title>
+    <link rel="icon" href="data:,">
+</head>
+<body class="home">
+    <nav>
+        <div class="logo">
+            <button id="logo" class="logo">Lumix</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="game.html">Games</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+
+        <div id="btns">
+            <button id="loginBtn" class="btns">Login</button>
+            <button id="userBtn" hidden>
+                <i class="fa-solid fa-user"></i>
+            </button>
+        </div>
+
+        <div id="userMenu" >
+            <p id="helloUser">Olá</p>
+            <div id="club-info" style="display: none;">
+                <a href="clubs.html" class="club-link">
+                    <span id="club-badge"></span>
+                    <span id="club-name"></span>
+                </a>
+            </div>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </nav>
+
+    <div id="club-header" style="display: none;">
+        <span id="header-badge"></span>
+        <div>
+            <h1 id="header-name"></h1>
+            <p id="header-description"></p>
+        </div>
+    </div>
+
+    <div id="club-tabs">
+        <button class="tab-btn active" data-tab="members">👥 Members</button>
+        <button class="tab-btn" data-tab="leaderboard">🏆 Club Leaderboard</button>
+        <button class="tab-btn" data-tab="pvp">⚔️ PvP</button>
+    </div>
+
+    <div id="tab-members" class="tab-content" style="display: none;"></div>
+        
+    <div id="tab-leaderboard" class="tab-content" style="display: none;">
+        <table id="club-leaderboard-table" class="data-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Jogador</th>
+                    <th>Pontuação Total</th>
+                    <th>Desafios</th>
+                </tr>
+            </thead>
+            <tbody id="club-leaderboard-body"></tbody>
+        </table>
+    </div>
+
+    <div id="tab-pvp" class="tab-content" style="display: none;">
+        <div id="pvp-placeholder">
+            <h2>⚔️ PvP</h2>
+            <p>Brevemente...</p>
+        </div>
+    </div>
+
+    <div id="club-loading">A carregar clube...</div>
+    <div id="no-club" style="display: none;">
+        <h2>Não pertences a nenhum clube</h2>
+        <p>Fala com o admin para seres adicionado</p>
+    </div>
+
+</body>
+</html>

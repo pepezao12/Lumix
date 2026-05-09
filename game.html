@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1496d6dab9.js" crossorigin="anonymous"></script>         
+    <script type="module" src="game.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Lumix</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <button id="logo" class="logo">Lumix</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="game.html">Games</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+
+        <div id="btns">
+            <button id="loginBtn" class="btns">Login</button>
+            <button id="userBtn" hidden>
+                <i class="fa-solid fa-user"></i>
+            </button>
+        </div>
+
+        <div id="userMenu" >
+            <p id="helloUser">Olá</p>
+            <div id="club-info" style="display: none;">
+                <a href="clubs.html" class="club-link">
+                    <span id="club-badge"></span>
+                    <span id="club-name"></span>
+                </a>
+            </div>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </nav>
+
+    <div id="already-played" style="display:none">
+        <h2>⏳ Já jogaste hoje!</h2>
+        <p>Volta amanhã para um novo desafio.</p>
+        <p id="next-challenge-time"></p>
+    </div>
+    <div id="loading">Loading challenge...</div> 
+
+    <div id="intro-section" style="display:none">
+        <h2 id="challenge-number"></h2>
+        <p>Estás pronto para o desafio de hoje?</p>
+        <p>🧠 Uma pergunta de quiz + 🟩 Um wordle à tua espera!</p>
+        <button id="start-btn">Começar</button>
+    </div>
+
+    <div id="quiz-section" style="display:none">
+        <h2 id="quiz-question"></h2>
+        <div class="quiz-options">
+            <button id="btn-a"></button>
+            <button id="btn-b"></button>
+            <button id="btn-c"></button>
+            <button id="btn-d"></button>
+        </div>
+        <p id="quiz-feedback"></p>
+    </div>
+
+
+    <div id="wordle-section" style="display:none">
+        <p>Guess the 5-letter word</p>
+        <div id="wordle-input-display"><span class="input-box" id="box-0"></span>
+            <span class="input-box" id="box-1"></span>
+            <span class="input-box" id="box-2"></span>
+            <span class="input-box" id="box-3"></span>
+            <span class="input-box" id="box-4"></span>
+        </div>
+        <input type='text' id="wordle-input"  maxlength="5" 
+        style="position:absolute; opacity: 0; pointer-events: none;">
+        
+        <div id="wordle-feedback"></div>
+        <p id="wordle-attempts"></p>
+        <button id="wordle-submit">Submeter</button>
+    </div>
+
+
+    <div id="results-section" style="display:none">
+        <h2>Challenge Completed!</h2>
+        <div id="final-score">
+            <div class="score-item">
+                <span>🧠 Quiz</span>
+                <span id="anim-quiz">0</span>
+                <span>pontos</span>
+            </div>
+            <div class="score-item">
+                <span>🟩 Wordle</span>
+                <span id="anim-wordle">0</span>
+                <span>pontos</span>
+            </div>
+            <div class="score-item total-item">
+                <span>🏆 Total</span>
+                <span id="anim-total">0</span>
+                <span>pontos</span>
+            </div>
+        </div>
+        <p id="results-countdown"></p>
+        <button id="next-challenge">Next Challenge</button>
+    </div>
+</body>
+</html>
