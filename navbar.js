@@ -1,4 +1,6 @@
 import { supabase } from "./supabase.js";
+import { initTransitions, navigateTo } from "./spinner-trans.js";
+
 
 // Cria um elemento <img> de forma segura, sem concatenação de HTML (evita XSS)
 function createBadgeElement(badgeEl, badgeValue) {
@@ -46,13 +48,13 @@ export async function initNavbar({ redirectIfLoggedOut = false } = {}) {
 
     loginBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        window.location.href = "index.html";
+        navigateTo("index.html")
     });
 
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
-        if (redirectIfLoggedOut) window.location.href = "index.html";
+        if (redirectIfLoggedOut) navigateTo("index.html");
         loginBtn.hidden = false;
         userBtn.hidden  = true;
         userMenu.classList.remove("active");
@@ -86,7 +88,7 @@ export async function initNavbar({ redirectIfLoggedOut = false } = {}) {
 
     logoutBtn.addEventListener("click", async () => {
         await supabase.auth.signOut();
-        window.location.href = "index.html";
+        navigateTo("index.html")
     });
 
     return { user, profile };

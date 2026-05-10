@@ -1,6 +1,7 @@
 import { supabase }                    from "./supabase.js";
 import { initNavbar }                  from "./navbar.js";
 import { groupScoresByUser, position } from "./helpers.js";
+import { showSpinner, hideSpinner, initTransitions } from "./spinner-trans.js";
 
 // ─── Club ──────────────────────────────────────────────────────────────────
 async function loadClub(userId, isAdmin) {
@@ -143,9 +144,15 @@ function setupTabs() {
 
 // ─── Init ──────────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
+    initTransitions()
     const { user, profile } = await initNavbar({ redirectIfLoggedOut: true });
-    if (!user) return;
+    if (!user) {
+        hideSpinner()  // ← esconde se não há user
+        return;
+    }
 
     setupTabs();
     await loadClub(user.id, profile?.is_admin);
+
+    hideSpinner()  // ← esconde quando o clube carregar
 });

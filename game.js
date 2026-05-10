@@ -1,6 +1,7 @@
 import { supabase }               from "./supabase.js";
 import { initNavbar }             from "./navbar.js";
 import { startMidnightCountdown } from "./helpers.js";
+import { showSpinner, hideSpinner, initTransitions, navigateTo } from "./spinner-trans.js";
 
 let currentChallenge = null;
 let quizScore        = 0;
@@ -299,10 +300,18 @@ async function saveScore(total) {
 
 // ─── Init ──────────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
+    initTransitions()
     const { user } = await initNavbar({ redirectIfLoggedOut: true });
-    if (!user) return;
+    if (!user) {
+        hideSpinner()  // ← esconde se não há user
+        return;
+    }
 
     setupIntro();
     setupWordle();
     await loadChallenge();
+
+    hideSpinner()
+
+    
 });

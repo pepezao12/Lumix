@@ -1,6 +1,7 @@
 import { supabase }                    from "./supabase.js";
 import { initNavbar }                  from "./navbar.js";
 import { groupScoresByUser, position } from "./helpers.js";
+import { showSpinner, hideSpinner, initTransitions } from "./spinner-trans.js";
 
 let currentFilter = "all";
 let sortBy        = "totalScore";
@@ -12,6 +13,7 @@ async function loadLeaderboard(filter) {
     document.getElementById("leaderboard-container").style.display = "none";
     document.getElementById("leaderboard-empty").style.display     = "none";
 
+    let currentUserId = null
     let startDate = null;
     if (filter === "today") {
         const today = new Date();
@@ -45,16 +47,39 @@ async function loadLeaderboard(filter) {
     const tbody = document.getElementById("leaderboard-body");
     tbody.innerHTML = "";
 
+    let userPosition = null
+    let userPlayer = null
+
     players.forEach((player, index) => {
-        const row = document.createElement("tr");
+        const row = document.createElement("tr")
+
+        // Verifica se esta linha é o utilizador atual
+        const isCurrentUser = player.userId === currentUserId
+
+        // Se for, guarda a posição para mostrar em baixo
+        if (isCurrentUser) {
+            userPosition = index + 1
+            userPlayer = player
+            row.classList.add("current-user-row")  // ← classe especial
+        }
+
         row.innerHTML = `
             <td>${position(index)}</td>
-            <td>${player.username}</td>
+            <td>${player.username} ${isCurrentUser ? '<span class="you-badge">Tu</span>' : ''}</td>
             <td>${player.totalScore}</td>
             <td>${player.gamesPlayed}</td>
-        `;
-        tbody.appendChild(row);
-    });
+        `
+        tbody.appendChild(row)
+        const bar = document.getElementById("user-position-bar")
+
+        if (userPosition && userPlayer) {
+            document.getElementById("user-position-text").textContent =
+                `A tua posição: ${position(userPosition - 1)} — ${userPlayer.username} — ${userPlayer.totalScore} pts`
+            bar.style.display = "flex"
+        } else {
+            bar.style.display = "none"
+        }
+    })
 }
 
 function updateSortArrows() {
@@ -89,7 +114,10 @@ function handleSortClick(column) {
 
 // ─── Init ──────────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
+    initTransitions()
     await initNavbar();
+    const {user} = await initNavbar()
+    if (user) currentUserId = user.id
 
     document.getElementById("filter-all").addEventListener("click",   () => handleFilterClick("all"));
     document.getElementById("filter-week").addEventListener("click",  () => handleFilterClick("week"));
@@ -98,5 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("sort-games").addEventListener("click",   () => handleSortClick("gamesPlayed"));
 
     updateSortArrows();
-    loadLeaderboard("all");
+    await loadLeaderboard("all");
+
+    hideSpinner()
 });

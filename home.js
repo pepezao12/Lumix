@@ -1,7 +1,7 @@
 import { supabase }              from "./supabase.js";
 import { initNavbar }            from "./navbar.js";
 import { groupScoresByUser, startMidnightCountdown } from "./helpers.js";
-
+import { showSpinner, hideSpinner, initTransitions } from "./spinner-trans.js";
 // ─── Streak ────────────────────────────────────────────────────────────────
 // Corrigido: agora itera sobre uniqueDays (não sobre scores com índice de uniqueDays)
 function calcStreak(scores) {
@@ -105,6 +105,7 @@ async function loadTop3() {
 
 // ─── Init ──────────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
+    initTransitions()
     const { user, profile } = await initNavbar();
 
     if (user) {
@@ -124,4 +125,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         "Responde a uma pergunta de escolha múltipla. Acerta para ganhar 10 pontos!";
     document.querySelector("#how-to-play .how-card:nth-child(2) p").textContent =
         "Adivinha a palavra de 5 letras. Verde = letra certa no lugar certo. Amarelo = letra existe mas está no lugar errado. Tens 6 tentativas!";
+
+
+    hideSpinner()
 });

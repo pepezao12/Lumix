@@ -9,6 +9,11 @@
     <title>Lumix - Leaderboard</title>
 </head>
 <body>
+
+    <div id="global-loading">
+        <div class="spinner"></div>
+    </div>
+
     <nav>
         <div class="logo">
             <button id="logo" class="logo">Lumix</button>
@@ -56,6 +61,9 @@
             </thead>
             <tbody id="leaderboard-body"></tbody>
         </table>
+    </div>
+    <div id="user-position-bar" style="display: none;">
+        <span id="user-position-text"></span>
     </div>
     <div id="leaderboard-loading">Loading...</div>
     <div id="leaderboard-empty" style="display:none">Ainda não há pontuações registadas.</div>
