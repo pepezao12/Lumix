@@ -14,7 +14,6 @@ async function loadLeaderboard(filter) {
     document.getElementById("leaderboard-container").style.display = "none";
     document.getElementById("leaderboard-empty").style.display     = "none";
 
-    let currentUserId = null
     let startDate = null;
     if (filter === "today") {
         const today = new Date();
@@ -71,15 +70,15 @@ async function loadLeaderboard(filter) {
             <td>${player.gamesPlayed}</td>
         `
         tbody.appendChild(row)
-        const bar = document.getElementById("user-position-bar")
+    const bar = document.getElementById("user-position-bar")
 
-        if (userPosition && userPlayer) {
-            document.getElementById("user-position-text").textContent =
-                `A tua posição: ${position(userPosition - 1)} — ${userPlayer.username} — ${userPlayer.totalScore} pts`
-            bar.style.display = "flex"
-        } else {
-            bar.style.display = "none"
-        }
+    if (userPosition && userPlayer) {
+        document.getElementById("user-position-text").textContent =
+            `A tua posição: ${position(userPosition - 1)} — ${userPlayer.username} — ${userPlayer.totalScore} pts`
+        bar.style.display = "flex"
+    } else {
+        bar.style.display = "none"
+    }
     })
 }
 
@@ -116,7 +115,6 @@ function handleSortClick(column) {
 // ─── Init ──────────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
     initTransitions()
-    await initNavbar();
     const {user} = await initNavbar()
     if (user) currentUserId = user.id
 
