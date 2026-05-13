@@ -89,14 +89,25 @@ function setupIntro() {
 }
 
 function showQuiz() {
-    document.getElementById("quiz-question").textContent = currentChallenge.quiz_question;
+    // Anima a pergunta
+    const question = document.getElementById("quiz-question")
+    question.textContent = currentChallenge.quiz_question
+    question.classList.remove("animate-in")
+    void question.offsetWidth  // força o browser a resetar a animação
+    question.classList.add("animate-in")
 
-    const options = ["A", "B", "C", "D"];
-    options.forEach(letter => {
-        const btn = document.getElementById(`btn-${letter.toLowerCase()}`);
-        btn.textContent = `${letter}: ${currentChallenge[`option_${letter.toLowerCase()}`]}`;
-        btn.onclick = () => handleAnswer(letter);
-    });
+    const options = ["A", "B", "C", "D"]
+    options.forEach((letter, index) => {
+        const btn = document.getElementById(`btn-${letter.toLowerCase()}`)
+        btn.textContent = `${letter}: ${currentChallenge[`option_${letter.toLowerCase()}`]}`
+        btn.onclick = () => handleAnswer(letter)
+
+        // Cada botão aparece com delay crescente
+        btn.classList.remove("animate-in")
+        setTimeout(() => {
+            btn.classList.add("animate-in")
+        }, 200 + index * 100)
+    })
 }
 
 function handleAnswer(chosen) {
@@ -114,8 +125,12 @@ function handleAnswer(chosen) {
     }
 
     setTimeout(() => {
+        const wordleSection = document.getElementById('wordle-section')
         document.getElementById("quiz-section").style.display   = "none";
-        document.getElementById("wordle-section").style.display = "block";
+        wordleSection.style.display = 'block'
+        wordleSection.classList.remove('animate-fade')
+        void wordleSection.offsetWidth
+        wordleSection.classList.add('animate-fade')
         showWordle();
     }, 1500);
 }
@@ -261,29 +276,42 @@ function animateScore(elementId, target, duration) {
 }
 
 function showResults() {
-    document.getElementById("wordle-section").style.display  = "none";
-    document.getElementById("results-section").style.display = "flex";
+    document.getElementById("wordle-section").style.display  = "none"
+    const resultsSection = document.getElementById("results-section")
+    resultsSection.style.display = "flex"
+    resultsSection.classList.remove("animate-fade")
+    void resultsSection.offsetWidth
+    resultsSection.classList.add("animate-fade")
 
-    const total = quizScore + wordleScore;
-    animateScore("anim-quiz", quizScore, 800);
-    setTimeout(() => animateScore("anim-wordle", wordleScore, 800), 600);
-    setTimeout(() => animateScore("anim-total", total, 1000), 1200);
+    const total = quizScore + wordleScore
 
-    saveScore(total);
+    // Anima cada score-item com delay
+    const items = document.querySelectorAll(".score-item")
+    items.forEach((item, index) => {
+        item.classList.remove("animate-in")
+        setTimeout(() => {
+            item.classList.add("animate-in")
+        }, index * 300)
+    })
+
+    animateScore("anim-quiz", quizScore, 800)
+    setTimeout(() => animateScore("anim-wordle", wordleScore, 800), 600)
+    setTimeout(() => animateScore("anim-total", total, 1000), 1200)
+
+    saveScore(total)
 
     startMidnightCountdown(text => {
-        const el = document.getElementById("results-countdown");
-        if (el) el.textContent = text;
-    });
+        const el = document.getElementById("results-countdown")
+        if (el) el.textContent = text
+    })
 
-    // Após 8 s passa para o ecrã "já jogaste"
     setTimeout(() => {
-        document.getElementById("results-section").style.display  = "none";
-        document.getElementById("already-played").style.display    = "flex";
+        document.getElementById("results-section").style.display  = "none"
+        document.getElementById("already-played").style.display    = "flex"
         startMidnightCountdown(text => {
-            document.getElementById("next-challenge-time").textContent = text;
-        });
-    }, 8000);
+            document.getElementById("next-challenge-time").textContent = text
+        })
+    }, 8000)
 }
 
 async function saveScore(total) {

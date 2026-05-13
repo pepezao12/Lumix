@@ -74,10 +74,10 @@ async function loadMembers(clubId) {
     list.id = "members-list";
     container.appendChild(list);
 
-    members.forEach(member => {
-        const joinDate = new Date(member.joined_at).toLocaleDateString("pt-PT");
-        const card = document.createElement("div");
-        card.className = "member-card";
+    members.forEach((member, index) => {
+        const joinDate = new Date(member.joined_at).toLocaleDateString("pt-PT")
+        const card = document.createElement("div")
+        card.className = "member-card"
         card.innerHTML = `
             <div class="member-info">
                 <span class="member-icon">👤</span>
@@ -85,9 +85,14 @@ async function loadMembers(clubId) {
                 ${member.role === "captain" ? '<span class="captain-badge">⭐ Capitão</span>' : ""}
             </div>
             <span class="member-date">Desde ${joinDate}</span>
-        `;
-        list.appendChild(card);
-    });
+        `
+        list.appendChild(card)
+
+        // Cada card aparece com delay crescente
+        setTimeout(() => {
+            card.classList.add("animate-in")
+        }, index * 100)
+    })
 }
 
 // ─── Club Leaderboard ──────────────────────────────────────────────────────
@@ -113,33 +118,45 @@ async function loadClubLeaderboard(clubId) {
     tbody.innerHTML = "";
 
     players.forEach((player, index) => {
-        const row = document.createElement("tr");
+        const row = document.createElement("tr")
         row.innerHTML = `
             <td>${position(index)}</td>
             <td>${player.username}</td>
             <td>${player.totalScore}</td>
             <td>${player.gamesPlayed}</td>
-        `;
-        tbody.appendChild(row);
-    });
+        `
+        tbody.appendChild(row)
+
+        // Cada linha aparece com delay crescente
+        setTimeout(() => {
+            row.classList.add("animate-in")
+        }, index * 80)
+    })
 }
 
 // ─── Tabs ──────────────────────────────────────────────────────────────────
 function setupTabs() {
-    const buttons = document.querySelectorAll(".tab-btn");
+    const buttons = document.querySelectorAll(".tab-btn")
 
     buttons.forEach(btn => {
         btn.onclick = () => {
-            buttons.forEach(b => b.classList.remove("active"));
+            buttons.forEach(b => b.classList.remove("active"))
             document.querySelectorAll(".tab-content").forEach(tab => {
-                tab.style.display = "none";
-            });
-            btn.classList.add("active");
-            document.getElementById(`tab-${btn.dataset.tab}`).style.display = "block";
-        };
-    });
+                tab.style.display = "none"
+                tab.classList.remove("animate-fade")
+            })
+            btn.classList.add("active")
 
-    buttons[0].click(); // ← adiciona esta linha
+            const tab = document.getElementById(`tab-${btn.dataset.tab}`)
+            tab.style.display = "block"
+
+            // Força reset da animação e aplica
+            void tab.offsetWidth
+            tab.classList.add("animate-fade")
+        }
+    })
+
+    buttons[0].click()
 }
 
 // ─── Init ──────────────────────────────────────────────────────────────────
