@@ -6,6 +6,7 @@ import { showSpinner, hideSpinner, initTransitions } from "./spinner-trans.js";
 let currentFilter = "all";
 let sortBy        = "totalScore";
 let sortDir       = "desc";
+let currentUserId = null
 
 // ─── Leaderboard ───────────────────────────────────────────────────────────
 async function loadLeaderboard(filter) {
