@@ -7,7 +7,7 @@ export function groupScoresByUser(scores) {
         const uid      = score.user_id;
         const username = score.profiles?.username ?? "Anónimo";
         if (!map[uid]) {
-            map[uid] = { username, totalScore: 0, gamesPlayed: 0 };
+            map[uid] = { userId: uid, username, totalScore: 0, gamesPlayed: 0 };
         }
         map[uid].totalScore  += score.total_score;
         map[uid].gamesPlayed += 1;
