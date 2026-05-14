@@ -249,57 +249,44 @@ nav {
 /* ── Streak Toast ── */
 .streak-toast {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    top: 5rem;           /* ← em cima, abaixo da navbar */
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);  /* ← centrado horizontalmente */
     background: rgba(45, 0, 128, 0.95);
     border: 1px solid #6b38f8;
     border-radius: 12px;
-    padding: 1rem 1.2rem;
+    padding: 1.2rem 2rem;
     display: flex;
     align-items: center;
     gap: 12px;
-    box-shadow: 0 0 20px rgba(107, 56, 248, 0.4);
+    box-shadow: 0 0 30px rgba(107, 56, 248, 0.5);
     z-index: 9998;
-    max-width: 300px;
+    min-width: 320px;
+    max-width: 500px;
+    justify-content: center;
 
-    /* começa escondido */
     opacity: 0;
-    transform: translateY(20px);
     pointer-events: none;
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .streak-toast.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);  /* ← mantém o centro ao aparecer */
     pointer-events: auto;
 }
 
 .streak-toast.hiding {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateX(-50%) translateY(-20px);
 }
 
 #streak-toast-text {
-    font-size: 0.9rem;
+    font-size: 1rem;       /* ← maior */
     font-weight: 600;
     color: #e2e8f0;
     line-height: 1.4;
-}
-
-#streak-toast-close {
-    background: transparent;
-    border: none;
-    color: #a78bfa;
-    cursor: pointer;
-    font-size: 0.9rem;
-    padding: 0;
-    flex-shrink: 0;
-    transition: color 0.2s;
-}
-
-#streak-toast-close:hover {
-    color: #fff;
+    text-align: center;
 }
 /* ── Dashboard ── */
 #dashboard {
