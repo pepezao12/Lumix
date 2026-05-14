@@ -1185,7 +1185,7 @@ body.login {
 }
 
 /* Stats na página de perfil */
-.profile-page .stats-grid {
+.stats-grid {
     max-width: 800px;
     margin: 0 auto 2rem;
     padding: 0 1rem;
@@ -1194,7 +1194,7 @@ body.login {
 /* Gráfico */
 #chart-section {
     max-width: 800px;
-    margin: 0 auto 2rem;
+    margin: 2rem 1rem 2rem;
     padding: 1.5rem 2rem;
     background: rgba(107, 56, 248, 0.05);
     border: 1px solid rgba(107, 56, 248, 0.15);
