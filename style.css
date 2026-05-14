@@ -290,6 +290,7 @@ nav {
 }
 #streak-toast-close {
     background-color: transparent;
+    border: none;
 }
 /* ── Dashboard ── */
 #dashboard {
