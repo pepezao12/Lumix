@@ -1,6 +1,6 @@
 import { supabase }                    from "./supabase.js";
 import { initNavbar }                  from "./navbar.js";
-import { groupScoresByUser, position } from "./helpers.js";
+import { groupScoresByUser, position, showStreakToast } from "./helpers.js";
 import { showSpinner, hideSpinner, initTransitions } from "./spinner-trans.js";
 
 let currentFilter = "all";
@@ -128,4 +128,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadLeaderboard("all");
 
     hideSpinner()
+    showStreakToast(supabase)
 });

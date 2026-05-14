@@ -1,6 +1,6 @@
 import { supabase }                    from "./supabase.js";
 import { initNavbar }                  from "./navbar.js";
-import { groupScoresByUser, position } from "./helpers.js";
+import { groupScoresByUser, position, showStreakToast } from "./helpers.js";
 import { showSpinner, hideSpinner, initTransitions } from "./spinner-trans.js";
 
 // ─── Club ──────────────────────────────────────────────────────────────────
@@ -171,6 +171,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     setupTabs();
     await loadClub(user.id, profile?.is_admin);
 
-    hideSpinner()  // ← esconde quando o clube carregar
+    hideSpinner()
+    showStreakToast(supabase)  // ← esconde quando o clube carregar
 });
 

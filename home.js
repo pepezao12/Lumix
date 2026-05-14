@@ -1,6 +1,6 @@
 import { supabase }              from "./supabase.js";
 import { initNavbar }            from "./navbar.js";
-import { groupScoresByUser, startMidnightCountdown, calcStreak } from "./helpers.js";
+import { groupScoresByUser, startMidnightCountdown, calcStreak, showStreakToast } from "./helpers.js";
 import { showSpinner, hideSpinner, initTransitions } from "./spinner-trans.js";
 
 // ─── Stats ─────────────────────────────────────────────────────────────────
@@ -100,4 +100,5 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     hideSpinner()
+    showStreakToast(supabase)
 });

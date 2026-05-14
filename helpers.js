@@ -66,3 +66,70 @@ export function calcStreak(scores) {
     }
     return streak;
 }
+
+export async function showStreakToast(supabase) {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    // Vai buscar os scores ordenados por data
+    const { data: scores } = await supabase
+        .from('scores')
+        .select('created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: true })
+
+    if (!scores || scores.length === 0) return
+
+    const streak = calcStreak(scores)
+    if (streak === 0) return
+
+    // Verifica se já mostrou o toast hoje para não repetir
+    const lastShown = localStorage.getItem('streak-toast-shown')
+    const today     = new Date().toDateString()
+    if (lastShown === today) return
+
+    // Guarda que já mostrou hoje
+    localStorage.setItem('streak-toast-shown', today)
+
+    // Escolhe a mensagem com base no streak
+    let message = ''
+    if (streak === 1) {
+        message = '🔥 Começaste um streak! Joga hoje para o manter!'
+    } else if (streak < 5) {
+        message = `🔥 Streak de ${streak} dias! Continua assim!`
+    } else if (streak < 10) {
+        message = `🔥 ${streak} dias seguidos! Estás em chama!`
+    } else {
+        message = `🔥 ${streak} dias! És imparável!`
+    }
+
+    // Preenche e mostra o toast
+    const toast     = document.getElementById('streak-toast')
+    const toastText = document.getElementById('streak-toast-text')
+
+    if (!toast || !toastText) return
+
+    toastText.textContent = message
+
+    // Pequeno delay antes de aparecer para a página carregar primeiro
+    setTimeout(() => {
+        toast.classList.add('visible')
+    }, 1000)
+
+    // Desaparece automaticamente após 5 segundos
+    setTimeout(() => {
+        hideToast(toast)
+    }, 6000)
+
+    // Botão de fechar
+    document.getElementById('streak-toast-close').onclick = () => {
+        hideToast(toast)
+    }
+}
+
+function hideToast(toast) {
+    toast.classList.add('hiding')
+    setTimeout(() => {
+        toast.classList.remove('visible', 'hiding')
+    }, 400)
+}

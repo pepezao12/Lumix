@@ -1,6 +1,6 @@
 import { supabase }                          from "./supabase.js";
 import { initNavbar }                        from "./navbar.js";
-import { calcStreak }                        from "./helpers.js";
+import { calcStreak, showStreakToast }                        from "./helpers.js";
 import { hideSpinner, initTransitions }      from "./spinner-trans.js";
 
 // ─── Perfil ────────────────────────────────────────────────────────────────
@@ -158,4 +158,5 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await loadProfile(user.id)
     hideSpinner()
+    showStreakToast(supabase)
 })

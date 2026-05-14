@@ -246,6 +246,61 @@ nav {
     font-size: 0.9rem;
 }
 
+/* ── Streak Toast ── */
+.streak-toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: rgba(45, 0, 128, 0.95);
+    border: 1px solid #6b38f8;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 0 20px rgba(107, 56, 248, 0.4);
+    z-index: 9998;
+    max-width: 300px;
+
+    /* começa escondido */
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.streak-toast.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.streak-toast.hiding {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+#streak-toast-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    line-height: 1.4;
+}
+
+#streak-toast-close {
+    background: transparent;
+    border: none;
+    color: #a78bfa;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+    flex-shrink: 0;
+    transition: color 0.2s;
+}
+
+#streak-toast-close:hover {
+    color: #fff;
+}
 /* ── Dashboard ── */
 #dashboard {
     max-width: 800px;

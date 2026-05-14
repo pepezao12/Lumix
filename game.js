@@ -1,6 +1,6 @@
 import { supabase }               from "./supabase.js";
 import { initNavbar }             from "./navbar.js";
-import { startMidnightCountdown } from "./helpers.js";
+import { startMidnightCountdown, showStreakToast } from "./helpers.js";
 import { showSpinner, hideSpinner, initTransitions, navigateTo } from "./spinner-trans.js";
 
 let currentChallenge = null;
@@ -340,6 +340,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadChallenge();
 
     hideSpinner()
-
+    showStreakToast(supabase)
     
 });
