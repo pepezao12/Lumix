@@ -291,6 +291,7 @@ nav {
 #streak-toast-close {
     background-color: transparent;
     border: none;
+    font-size: large;
 }
 /* ── Dashboard ── */
 #dashboard {
