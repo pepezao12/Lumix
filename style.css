@@ -284,9 +284,12 @@ nav {
 #streak-toast-text {
     font-size: 1rem;       /* ← maior */
     font-weight: 600;
-    color: transparent;
+    color: #e2e8f0;
     line-height: 1.4;
     text-align: center;
+}
+#streak-toast-close {
+    color: transparent;
 }
 /* ── Dashboard ── */
 #dashboard {
