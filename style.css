@@ -198,7 +198,9 @@ nav {
 }
 
 .profile-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color: #a78bfa;
     text-decoration: none;
     font-size: 0.9rem;
