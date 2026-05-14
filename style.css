@@ -208,7 +208,8 @@ nav {
 }
 
 .profile-link:hover {
-    color: #fff;
+    opacity: 0.8;
+    color: #6b38f8;
 }
 
 #club-info {
