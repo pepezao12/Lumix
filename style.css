@@ -297,7 +297,7 @@ nav {
 
 #streak-toast-close:hover {
     color: #5c0af3;
-    transform: 0.3s ease;
+    transition: fadeIn 0.4s ease forwards
 }
 /* ── Dashboard ── */
 #dashboard {
