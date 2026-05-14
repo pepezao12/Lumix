@@ -294,6 +294,10 @@ nav {
     font-size: large;
     cursor: pointer;
 }
+
+#streak-toast-close:hover {
+    color: #5c0af3;
+}
 /* ── Dashboard ── */
 #dashboard {
     max-width: 800px;
