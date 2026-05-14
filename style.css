@@ -292,6 +292,7 @@ nav {
     background-color: transparent;
     border: none;
     font-size: large;
+    pointer-events: auto;
 }
 /* ── Dashboard ── */
 #dashboard {
