@@ -173,3 +173,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     hideSpinner()  // ← esconde quando o clube carregar
 });
+

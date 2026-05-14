@@ -1,35 +1,7 @@
 import { supabase }              from "./supabase.js";
 import { initNavbar }            from "./navbar.js";
-import { groupScoresByUser, startMidnightCountdown } from "./helpers.js";
+import { groupScoresByUser, startMidnightCountdown, calcStreak } from "./helpers.js";
 import { showSpinner, hideSpinner, initTransitions } from "./spinner-trans.js";
-// ─── Streak ────────────────────────────────────────────────────────────────
-// Corrigido: agora itera sobre uniqueDays (não sobre scores com índice de uniqueDays)
-function calcStreak(scores) {
-    if (scores.length === 0) return 0;
-
-    // Normaliza cada score para "YYYY-M-D" (chave de dia)
-    const uniqueDays = [
-        ...new Set(
-            scores.map(s => {
-                const d = new Date(s.created_at);
-                return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-            })
-        )
-    ];
-
-    let streak = 1;
-    for (let i = uniqueDays.length - 1; i > 0; i--) {
-        // Reconstrói datas a partir das chaves para comparar
-        const [cy, cm, cd] = uniqueDays[i].split("-").map(Number);
-        const [py, pm, pd] = uniqueDays[i - 1].split("-").map(Number);
-        const current  = new Date(cy, cm, cd);
-        const previous = new Date(py, pm, pd);
-        const diffDays = Math.round((current - previous) / 86_400_000);
-        if (diffDays === 1) streak++;
-        else break;
-    }
-    return streak;
-}
 
 // ─── Stats ─────────────────────────────────────────────────────────────────
 async function loadUserStats(userId) {

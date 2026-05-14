@@ -197,6 +197,20 @@ nav {
     color: #fff;
 }
 
+.profile-link {
+    display: block;
+    color: #a78bfa;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 4px 0;
+    transition: 0.3s;
+}
+
+.profile-link:hover {
+    color: #fff;
+}
+
 #club-info {
     margin: 8px 0;
     border-top: 1px solid rgba(107, 56, 248, 0.3);
@@ -1115,3 +1129,148 @@ body.login {
 @keyframes spin {
     to {transform: rotate(360deg);}
 }
+
+/* Perfil */
+
+#profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 2rem auto 1.5rem;
+    padding: 1.5rem 2rem;
+    background: rgba(107, 56, 248, 0.08);
+    border: 1px solid rgba(107, 56, 248, 0.2);
+    border-radius: 16px;
+    animation: fadeSlideUp 0.5s ease forwards;
+}
+#profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(107, 56, 248, 0.2);
+    border: 2px solid #6b38f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #a78bfa;
+    flex-shrink: 0;
+}
+
+.profile-info h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #a78bfa;
+}
+
+.profile-info p {
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.profile-club-badge {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+/* Stats na página de perfil */
+.profile-page .stats-grid {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+}
+
+/* Gráfico */
+#chart-section {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    padding: 1.5rem 2rem;
+    background: rgba(107, 56, 248, 0.05);
+    border: 1px solid rgba(107, 56, 248, 0.15);
+    border-radius: 16px;
+    animation: fadeSlideUp 0.5s ease 0.2s both;
+}
+
+#chart-section h3 {
+    color: #a78bfa;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+#score-chart {
+    width: 100%;
+    display: block;
+}
+
+/* Histórico */
+#history-section {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    padding: 0 1rem;
+}
+
+#history-section h3 {
+    color: #a78bfa;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+#history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.history-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(107, 56, 248, 0.08);
+    border: 1px solid rgba(107, 56, 248, 0.15);
+    border-radius: 10px;
+    padding: 0.8rem 1.2rem;
+    opacity: 0;
+    transition: background 0.3s;
+}
+
+.history-card:hover {
+    background: rgba(107, 56, 248, 0.15);
+}
+
+.history-card.animate-in {
+    animation: fadeSlideUp 0.4s ease forwards;
+}
+
+.history-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.history-date {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.history-challenge {
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.history-scores {
+    display: flex;
+    gap: 1rem;
+    font-weight: 600;
+}
+
+.history-quiz   { color: #a78bfa; }
+.history-wordle { color: #538d4e; }
+.history-total  { color: #6b38f8; }

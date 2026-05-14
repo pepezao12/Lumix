@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1496d6dab9.js" crossorigin="anonymous"></script>         
+    <script type="module" src="profile.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Lumix</title>
+</head>
+<body>
+        <div id="global-spinner">
+            <div class="spinner"></div>
+        </div>
+    <nav>
+        <div class="logo">
+            <button id="logo" class="logo">Lumix</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="game.html">Games</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+
+        <div id="btns">
+            <button id="loginBtn" class="btns">Login</button>
+            <button id="userBtn" hidden>
+                <i class="fa-solid fa-user"></i>
+            </button>
+        </div>
+
+        <div id="userMenu" >
+            <p id="helloUser">Olá</p>
+            <a href="profile.html" class="profile-link">👤 O meu perfil</a>
+            <div id="club-info" style="display: none;">
+                <a href="clubs.html" class="club-link">
+                    <span id="club-badge"></span>
+                    <span id="club-name"></span>
+                </a>
+            </div>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </nav>
+
+    <div id="profile-header">
+        <div id="profile-avatar">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="profile-info">
+            <h1 id="profile-username"></h1>
+            <p id="profile-club"></p>
+            <p id="profile-streak"></p>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <p>Pontuação Total</p>
+            <h2 id="profile-total-score"></h2>
+        </div>
+        <div class="stat-card">
+            <p>Desafios Completos</p>
+            <h2 id="profile-challenges"></h2>
+        </div>
+    </div>
+
+    <div id="chart-section">
+        <h3>Evolução da Pontuação</h3>
+        <canvas id="score-chart"></canvas>
+    </div>
+
+    <div id="history-section">
+        <h3>Histórico de Desafios</h3>
+        <div id="history-list"></div>
+    </div>
+</body>
+</html>
