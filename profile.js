@@ -57,65 +57,6 @@ async function loadProfile(userId) {
 }
 
 // ─── Gráfico ───────────────────────────────────────────────────────────────
-import { supabase }                          from "./supabase.js";
-import { initNavbar }                        from "./navbar.js";
-import { calcStreak }                        from "./helpers.js";
-import { hideSpinner, initTransitions }      from "./spinner-trans.js";
-
-// ─── Perfil ────────────────────────────────────────────────────────────────
-async function loadProfile(userId) {
-
-    // Perfil
-    const { data: profile } = await supabase
-        .from('profiles')
-        .select('username')
-        .eq('id', userId)
-        .maybeSingle()
-
-    document.getElementById('profile-username').textContent = profile?.username ?? 'Anónimo'
-
-    // Clube
-    const { data: membership } = await supabase
-        .from('club_members')                          // ← underscore não hífen
-        .select('clubs(name, badge)')
-        .eq('user_id', userId)
-        .limit(1)
-        .maybeSingle()
-
-    if (membership) {
-        const badge = membership.clubs.badge
-        const name  = membership.clubs.name
-        const isImg = badge && badge.startsWith('http')
-        document.getElementById('profile-club').innerHTML =
-            `${isImg ? `<img src="${badge}" class="profile-club-badge">` : badge} ${name}`
-    } else {
-        document.getElementById('profile-club').textContent = 'Sem clube'
-    }
-
-    // Scores
-    const { data: scores } = await supabase
-        .from('scores')
-        .select('total_score, quiz_score, wordle_score, created_at, challenge_id')
-        .eq('user_id', userId)
-        .order('created_at', { ascending: true })
-
-    if (!scores || scores.length === 0) {
-        document.getElementById('profile-total-score').textContent = '0'
-        document.getElementById('profile-challenges').textContent  = '0'
-        document.getElementById('profile-streak').textContent      = '🔥 0 dias'
-        return
-    }
-
-    const totalScore = scores.reduce((sum, s) => sum + s.total_score, 0)
-    document.getElementById('profile-total-score').textContent = totalScore
-    document.getElementById('profile-challenges').textContent  = scores.length
-    document.getElementById('profile-streak').textContent      = `🔥 ${calcStreak(scores)} dias`  // ← backticks
-
-    drawChart(scores)
-    renderHistory(scores)
-}
-
-// ─── Gráfico ───────────────────────────────────────────────────────────────
 function drawChart(scores) {
     const canvas = document.getElementById('score-chart')
     const ctx    = canvas.getContext('2d')
