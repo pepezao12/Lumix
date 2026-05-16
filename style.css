@@ -25,6 +25,10 @@
     0%, 100% {box-shadow: 0 0 14px #6b38f8;}
     50%       {box-shadow: 0 0 30px #a78bfa, 0 0 60px #6b38f8;}    
 }
+@keyframes pulse2 {
+    0%, 100% {text-shadow: 0 0 2px rgba(107, 56, 248, 0.6); }
+    50%       { text-shadow: 0 0 1.5px rgba(167, 139, 250, 0.9), 0 0 40px #6b38f8; }
+}
 .animate-in {
     animation: fadeSlideUp 0.5s ease forwards;
 }
@@ -40,6 +44,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+    
 }
 
 #loginBtn {
@@ -50,7 +55,7 @@
 body {
     background: #130f2a;
     color: rgb(255, 255, 255);
-    transition: fadeIn 0.4s ease forwards
+    animation: fadeIn 0.4s ease forwards;
 }
 
 /* ── Nav ── */
@@ -214,6 +219,7 @@ nav {
     color: #6b38f8;
 }
 
+
 #club-info {
     margin: 8px 0;
     border-top: 1px solid rgba(107, 56, 248, 0.3);
@@ -294,7 +300,6 @@ nav {
     font-size: large;
     cursor: pointer;
 }
-
 #streak-toast-close:hover {
     color: #5c0af3;
     transition: fadeIn 0.4s ease forwards
@@ -1330,3 +1335,64 @@ body.login {
 .history-quiz   { color: #a78bfa; }
 .history-wordle { color: #538d4e; }
 .history-total  { color: #6b38f8; }
+
+/* 404 error */
+
+#not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    gap: 1rem;
+    animation: fadeSlideUp 0.6s ease forwards;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 900;
+    color: #6b38f8;
+    line-height: 1;
+
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    animation: pulse2 2s ease-in-out infinite;  /* ← usa a nova animação */
+}
+.error-code:focus,
+.error-code:active {
+    outline: none;
+}
+
+.error-msg {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #a78bfa;
+}
+
+.error-sub {
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.error-btn {
+    margin-top: 1rem;
+    padding: 0.7rem 2rem;
+    border-radius: 30px;
+    background: #6b38f8;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 0 14px #6b38f8;
+    transition: 0.3s;
+}
+
+.error-btn:hover {
+    background: #5c0af3;
+    box-shadow: 0 0 24px #5c0af3;
+}

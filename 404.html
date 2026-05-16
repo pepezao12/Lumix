@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Lumix - Página não encontrada</title>
+    <script>
+        window.addEventListener('load', function() {
+            const spinner = document.getElementById('global-loading')
+            if (spinner) spinner.style.display = 'none'
+        })
+    </script>
+</head>
+<body>
+    <div id="global-loading">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="not-found">
+        <h1 class="error-code">404</h1>
+        <p class="error-msg">Ups! Esta página não existe.</p>
+        <p class="error-sub">Parece que te perdeste.</p>
+        <a href="home.html" class="error-btn">Voltar à página inicial</a>
+    </div>
+
+    <div id="streak-toast" class="streak-toast">
+        <span id="streak-toast-text"></span>
+        <span id="streak-toast-close"></span>
+    </div>
+</body>
+</html>
