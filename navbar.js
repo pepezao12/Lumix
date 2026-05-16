@@ -46,6 +46,13 @@ export async function initNavbar({ redirectIfLoggedOut = false } = {}) {
     const helloUser = document.getElementById("helloUser");
     const logoutBtn = document.getElementById("logoutBtn");
 
+    const hamburger = document.getElementById('hamburger')
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('open')
+        })
+    }
+    
     loginBtn.addEventListener("click", (e) => {
         e.preventDefault();
         navigateTo("index.html")

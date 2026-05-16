@@ -1396,3 +1396,199 @@ body.login {
     background: #5c0af3;
     box-shadow: 0 0 24px #5c0af3;
 }
+
+/* ─────────────────────────────────────────
+   MOBILE — max-width: 768px
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* ── Navbar ── */
+    nav {
+        padding: 0.8rem 4%;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .nav-links {
+        display: none;  /* ← esconde os links no mobile */
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    #userMenu {
+        right: 4%;
+        top: 70px;
+    }
+
+    /* ── Home Dashboard ── */
+    #dashboard {
+        padding: 0 0.8rem 2rem;
+        gap: 1.5rem;
+    }
+
+    #welcome-msg {
+        font-size: 1.5rem;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;  /* ← 2 colunas sempre */
+        gap: 0.8rem;
+    }
+
+    /* O streak ocupa as duas colunas */
+    .stats-grid .stat-card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-card h2 {
+        font-size: 1.5rem;
+    }
+
+    #today-card {
+        padding: 1.2rem;
+    }
+
+    /* ── Quiz ── */
+    .quiz-options {
+        flex-wrap: wrap;  /* ← botões em 2x2 no mobile */
+        gap: 10px;
+    }
+
+    .quiz-options button {
+        max-width: 45%;
+        flex: 1 1 45%;
+    }
+
+    #quiz-question {
+        font-size: 1.3rem;
+    }
+
+    /* ── Wordle ── */
+    .wordle-letter,
+    .input-box {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+    }
+
+    #wordle-submit {
+        width: 70%;
+    }
+
+    /* ── Leaderboard ── */
+    #leaderboard-container {
+        padding: 0 0.8rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.6rem 0.4rem;
+        font-size: 0.85rem;
+    }
+
+    #filters {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    /* ── Clubs ── */
+    #club-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 1rem;
+        gap: 1rem;
+    }
+
+    #header-badge img {
+        width: 60px;
+        height: 60px;
+    }
+
+    #club-tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0 0.8rem;
+    }
+
+    .tab-content {
+        padding: 0 0.8rem;
+    }
+
+    .member-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    /* ── Perfil ── */
+    #profile-header {
+        flex-direction: column;
+        text-align: center;
+        margin: 1rem;
+        padding: 1.2rem;
+    }
+
+    #chart-section {
+        margin: 0 0.8rem 1.5rem;
+        padding: 1rem;
+    }
+
+    #history-section {
+        padding: 0 0.8rem;
+    }
+
+    .history-card {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .history-scores {
+        gap: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    /* ── Results ── */
+    #results-section {
+        transform: none;  /* ← remove o translateY no mobile */
+    }
+
+    #final-score {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    /* ── 404 ── */
+    .error-code {
+        font-size: 5rem;
+    }
+
+    /* ── Toast ── */
+    .streak-toast {
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        max-width: 100%;
+    }
+
+    .hamburger {
+        display: block;  /* ← só aparece no mobile */
+    }
+
+    /* Menu mobile aberto */
+    .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        order: 3;  /* ← vai para baixo da navbar */
+    }
+}
