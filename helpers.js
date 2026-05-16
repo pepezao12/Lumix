@@ -53,6 +53,16 @@ export function calcStreak(scores) {
         )
     ];
 
+    const now = new Date()
+    const todayKey = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+    const yesterday = new Date(now)
+    yesterday.setDate(yesterday.getDate() - 1)
+    const yesterdayKey = `${yesterday.getFullYear()}-${yesterday.getMonth()}-${yesterday.getDate()}`;
+
+    const lastDay = uniqueDays[uniqueDays.length - 1]
+
+    if (lastDay !== todayKey && lastDay !== yesterdayKey) return 0
+    
     let streak = 1;
     for (let i = uniqueDays.length - 1; i > 0; i--) {
         // Reconstrói datas a partir das chaves para comparar
